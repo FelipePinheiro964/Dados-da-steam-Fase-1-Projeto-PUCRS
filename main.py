@@ -1,9 +1,14 @@
-f = open("steam_games.csv", "r")
+##
+# inicio de sistema
+##
 
 
-for line in f:
-  linhas = line.strip().split(';')
-  print(linhas[:2])
+f = open("steam_games.csv", "r") #abrir dados em leitura
 
 
-f.close()
+for line in f: # ler suas linhas
+  linhas = line.strip().split(';') # variavel linhas para facilitar leitura
+  print(linhas) # imprimir todas as linhas, sem formatação, mas pode causar travamento
+
+
+f.close() # fecha o arquivo
