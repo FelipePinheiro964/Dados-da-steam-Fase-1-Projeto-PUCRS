@@ -2,15 +2,30 @@
 # inicio de sistema
 ##
 
+numeros = [1,2,3,4,5,6,7,8,9,0]
+
 try: #validação dos dados
    f = open("steam_games.csv", "r") #abrir dados em leitura
    print("dados carregados")
 except FileNotFoundError: # Notificar erro
     print("Erro ao carregar dados.")
+    print("Programa finalizado, tente novamente.")
+    raise SystemExit
 
 # Iniciar loop do sistema
 while True: 
-  entrada = int(input("selecione o numero:"))#Selecionar questão/função
+  entrada = input("selecione o numero:")#Selecionar questão/função
+  entrada = entrada.lower()
+
+  if entrada == 'sair':
+    print("Programa finalizado")
+    break
+  else:
+    if not entrada.isdigit():
+      print("Entrada invalida")
+      continue
+    else:
+      entrada = int(entrada)
 
 ##
 # Operações do sistema
