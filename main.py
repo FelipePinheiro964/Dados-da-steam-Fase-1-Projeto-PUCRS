@@ -36,8 +36,13 @@ while True:
   match entrada:
 
     case 1:
+      count = 0
       for line in f: # ler suas linhas
         linhas = line.strip().split(',')
+        count = count + 1
+        print(linhas)
+        if count == 100:
+          break
         #print(linhas)  # imprimir todas as linhas, sem formatação, mas pode causar travamento
 
 
