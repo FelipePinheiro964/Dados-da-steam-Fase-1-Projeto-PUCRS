@@ -2,6 +2,12 @@
 # inicio de sistema
 ##
 
+try: #validação dos dados
+   f = open("steam_games.csv", "r") #abrir dados em leitura
+   print("dados carregados")
+except FileNotFoundError: # Notificar erro
+    print("Erro ao carregar dados.")
+
 # Iniciar loop do sistema
 while True: 
   entrada = int(input("selecione o numero:"))#Selecionar questão/função
@@ -9,12 +15,6 @@ while True:
 ##
 # Operações do sistema
 ##
-  
-  try: #validação dos dados
-      f = open("steam_games.csv", "r") #abrir dados em leitura
-      print("dados carregados")
-  except FileNotFoundError: # Notificar erro
-      print("Erro ao carregar dados.")
 
  # Imprimir todo o arquivo
 
