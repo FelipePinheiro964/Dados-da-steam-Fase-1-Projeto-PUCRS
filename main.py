@@ -2,6 +2,7 @@
 # inicio de sistema
 ##
 
+import csv
 
 try: #validação dos dados
    f = open("steam_games.csv", "r") #abrir dados em leitura
@@ -14,7 +15,7 @@ except FileNotFoundError: # Notificar erro
 
 
 # Iniciar loop do sistema
-while True: 
+while True:
   entrada = input("selecione o numero:")#Selecionar questão/função
   entrada = entrada.lower()
 
@@ -44,9 +45,10 @@ while True:
          print(linhas)
          if freio == count:
            break
+        #print(linhas)  # imprimir todas as linhas, sem formatação, mas pode causar travamento
 
 
-## Percentual de jogos pagos e gratuitos
+## questão 1 Percentual de jogos pagos e gratuitos
 
     case 2:
       gratuito = 0
@@ -79,14 +81,28 @@ while True:
 
 
     case 4:
-      maior_avaliacao = 0
-      nome_maior_avaliacao = 0
-      next(f)
-      for line in f: # ler suas linhas
-        avaliacao = line.strip().split(',')[19]
-        nome = line.strip().split(',')[1]
-        if float(avaliacao) > maior_avaliacao:
-            maior_avaliacao = avaliacao
-            nome_maior_avaliacao = nome
-        print(avaliacao)
+      #arquivo
+      arquivo_csv = 'steam_games.csv'
+
+
+      preco = 0
+      nome_jogo = ''
+
+      with open(arquivo_csv, 'r') as arquivo:
+        steam_dados = csv.reader(arquivo, delimiter = ',', quotechar = '"') # delimitador
+        cabecalho = next(arquivo) # Cabecalho
+        print(cabecalho[1:6]) 
+        for linha in steam_dados:
+          try:
+            if float(linha[6]) > preco:
+              print(linha[6])
+              preco = float(linha[6])
+              nome_jogo = linha[1]
+          except:
+            ValueError
+            continue
+
+      print(f'O jogo mais caro da steam é {nome_jogo}, e custa {preco} dolares!!!')
+
+
 
