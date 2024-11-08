@@ -13,7 +13,6 @@ carregador = Carregador_de_dados(dados_csv)  # Cria uma instância da classe
 linhas_dados = carregador.carregar_dados()  # Carrega o arquivo direto da classe  
 
 
-
 # Iniciar loop do sistema
 while True:
   entrada = input("selecione o numero:")#Selecionar questão/função
@@ -119,6 +118,3 @@ while True:
             continue
 
       print(f'O jogo mais caro da steam é {nome_jogo}, e custa {preco} dolares!!!')
-
-
-
