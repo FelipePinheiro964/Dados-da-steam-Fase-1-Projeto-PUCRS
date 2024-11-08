@@ -2,9 +2,16 @@
 # inicio de sistema
 ##
 
+# imports para uso do sistema
 import csv
+from classes import Carregador_de_dados
 
-carregador.carregar_dados() #carrega arquivo direto da classe
+
+# Nome do arquivo  
+dados_csv = 'steam_games.csv'  
+carregador = Carregador_de_dados(dados_csv)  # Cria uma instância da classe  
+linhas_dados = carregador.carregar_dados()  # Carrega o arquivo direto da classe  
+
 
 
 # Iniciar loop do sistema
@@ -32,10 +39,10 @@ while True:
     case 1:
       count = int(input('Quantas linhas deseja visualizar: '))
       freio = 0
-      for line in f: # ler suas linhas
+      for line in linhas_dados: # ler suas linhas
          freio = freio + 1
-         linhas = line.strip().split(',')
-         print(linhas)
+         linha = line.strip().split(',')
+         print(linha)
          if freio == count:
            break
         #print(linhas)  # imprimir todas as linhas, sem formatação, mas pode causar travamento
@@ -48,23 +55,20 @@ while True:
       pago = 0
       total_linhas = 0
 
-      for line in f: # ler suas linhas
-        preco = line.strip().split(',')[7]
+      for line in linhas_dados: # ler suas linhas
+        preco = line.strip().split(';')[6]
         total_linhas = total_linhas + 1
-    #print(preco)
+
         if preco == '0.0':
           gratuito = gratuito + 1
         else:
           pago = pago + 1
 
-    #print(gratuito, pago)
-    #print(total_linhas)
-
       porcentagem_jogosgratuitos = (gratuito/total_linhas)*100
       porcentagem_jogospagos = (pago/total_linhas)*100
 
       print(f'% jogos gratuitos {porcentagem_jogosgratuitos:.2f}')
-      print(f'% jogos pagos {porcentagem_jogospagos:.2f}')
+      print(f'% jogos pagos {porcentagem_jogospagos:2.f}')
 
 
 
