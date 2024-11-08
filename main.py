@@ -45,11 +45,11 @@ while True:
          print(linha)
          if freio == count:
            break
-        #print(linhas)  # imprimir todas as linhas, sem formatação, mas pode causar travamento
 
-
-## questão 1 Percentual de jogos pagos e gratuitos
-
+##
+# Questão 1 Percentual de jogos pagos e gratuitos
+##
+  
     case 2:
       gratuito = 0
       pago = 0
@@ -71,13 +71,32 @@ while True:
       print(f'% jogos pagos {porcentagem_jogospagos:2.f}')
 
 
+##
+#  Questão 2: Data com mais lançamentos
+##
 
+    case 3:
+      
+      contagem_datas = {}
+      
+      for linha in linhas_dados:
+        data = linha.strip().split(',')[2]
+        if data in contagem_datas:
+          contagem_datas[data] += 1
+        else:
+          contagem_datas[data] = 1
+
+      data_mais_lancamentos = max(contagem_datas)
+      print(contagem_datas)
+      print(f'Data com mais lançamentos: {data_mais_lancamentos}')
+        
+        
+  
 ##
 #    Questão 3: jogo com melhor avaliação do usuario
 ##
 
-
-    case 3:
+    case 4:
       #arquivo
       arquivo_csv = 'steam_games.csv'
 
