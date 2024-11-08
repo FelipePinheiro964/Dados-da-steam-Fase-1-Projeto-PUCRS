@@ -4,14 +4,7 @@
 
 import csv
 
-try: #validação dos dados
-   f = open("steam_games.csv", "r") #abrir dados em leitura
-   print("dados carregados")
-
-except FileNotFoundError: # Notificar erro
-    print("Erro ao carregar dados.")
-    print("Programa finalizado, tente novamente.")
-    raise SystemExit
+carregador.carregar_dados() #carrega arquivo direto da classe
 
 
 # Iniciar loop do sistema
@@ -80,7 +73,7 @@ while True:
 ##
 
 
-    case 4:
+    case 3:
       #arquivo
       arquivo_csv = 'steam_games.csv'
 
