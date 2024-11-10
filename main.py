@@ -22,7 +22,7 @@ class Carregador_de_dados:
             raise SystemExit  
 
 #####################################################  
-# Entrada do menu  
+# Classe do menu  
 #####################################################  
 
 class Menu:  
@@ -32,15 +32,19 @@ class Menu:
     def opcoes(self, linhas_dados):  
         match self.selecionar_opcao:  
             case 1:  
-                self.visualizar_linhas(linhas_dados)  
+                self.visualizar_linhas(linhas_dados)      ## Opções do menu
             case 2:  
                 self.percentual_jogos(linhas_dados)  
             case 3:  
                 self.data_mais_lancamentos(linhas_dados)  
             case 4:  
-                self.jogo_mais_caro(linhas_dados)  
+                self.jogo_mais_caro(linhas_dados)
             case _:  
                 print('Opção não válida, selecione um numero descrito no menu.')  
+
+#####################################################
+# Definir funçao de visualizar linhas
+#####################################################
 
     def visualizar_linhas(self, linhas_dados):  
         count = int(input('Quantas linhas deseja visualizar: '))  
@@ -49,9 +53,13 @@ class Menu:
             if freio == count:  
                 break  
 
+#####################################################
+# Definir funçao de percentual de jogos pagos e gratuitos
+#####################################################
+
     def percentual_jogos(self, linhas_dados):  
         gratuito = 0  
-        pago = 0  
+        pago = 0  # variaveis
         total_linhas = 0  
 
         for line in linhas_dados:  
@@ -64,33 +72,41 @@ class Menu:
                 pago += 1  # Corrigido para "pago += 1"  
 
         if total_linhas > 0:  # Evita divisão por zero  
-            porcentagem_jogosgratuitos = (gratuito / total_linhas) * 100  
+            porcentagem_jogosgratuitos = (gratuito / total_linhas) * 100  # calculo de porcentagem
             porcentagem_jogospagos = (pago / total_linhas) * 100  
 
             print(f"% de jogos gratuitos: {porcentagem_jogosgratuitos:.2f}")  
             print(f"% de jogos pagos: {porcentagem_jogospagos:.2f}")  
 
+#####################################################
+# Definir funçao de ano com mais lançamentos
+#####################################################
+
     def data_mais_lancamentos(self, linhas_dados):  
-        contagem_datas = {}  
+        contagem_datas = {}  # lista para contagem
 
         for linha in linhas_dados:  
             data_lancamento = linha[2]  
             if data_lancamento in contagem_datas:  
                 contagem_datas[data_lancamento] += 1  
-            else:  
+            else:  # inicia um contagem dos anos e datas 
                 contagem_datas[data_lancamento] = 1  
 
         if contagem_datas:  # Verifica se há dados  
             ano_mais_frequente = max(contagem_datas, key=contagem_datas.get)  
             print(f'O ano mais frequente de lançamentos é: {ano_mais_frequente[6:]}')  
 
+#####################################################
+# Definir jogo mais caro do arquivo
+#####################################################
+
     def jogo_mais_caro(self, linhas_dados):  
         preco = 0  
-        nome_jogo = ''  
+        nome_jogo = ''  # variaveis para armazenar dados
 
         for linha in linhas_dados:  
             try:  
-                if float(linha[6]) > preco:  
+                if float(linha[6]) > preco:  # transforma em float para comparar com a variavel preco
                     preco = float(linha[6])  
                     nome_jogo = linha[1]  
             except ValueError:  
@@ -98,30 +114,45 @@ class Menu:
         
         print(f'O jogo mais caro do arquivo é {nome_jogo} e custa {preco} dólares!!!')  
 
+#####################################################
+# Execucao do menu e seleçao do arquivo
+#####################################################
+print('Boas vindas!')
+print('Trabalho de: Felipe Pinheiro Fossá') 
+print('PUCRS - Programação para dados')
+print('---------------------------------------')
+print('')
+print('Siga as instruções para fazer os testes.')
+print('')
 
-# Executando o programa  
-arquivo_csv = input('Digite o nome do arquivo CSV: ')
+arquivo_csv = input('Digite o nome do arquivo CSV: ') #escolher arquivo
+if arquivo_csv == 'sair':
+  print("Programa finalizado")
+  raise SystemExit #finalizaçao do programa antes da abertura de arquivo
+
 carregador = Carregador_de_dados(arquivo_csv)  
 linhas_dados = carregador.carregar_dados()  
+
+## loop do menu
 
 while True:
     print('')
     print('---------------- Menu -----------------')  
     print('1. Visualizar linhas desejadas')  
-    print('2. Percentual de jogos pagos e gratuitos')  
+    print('2. Percentual de jogos pagos e gratuitos')  # opcoes do menu
     print('3. Ano mais frequente de lançamentos')  
     print('4. Jogo mais caro do arquivo')
     print('---------------------------------------')
     print('')
-    selecionar_opcao = input("Selecione o número (ou digite 'sair' para encerrar): ").lower()  
-
+    selecionar_opcao = input("Selecione o número (ou digite 'sair' para encerrar): ").lower()  #deixar tudo em minusculo, 
+                                                                                               # facilitar leitura de comandos para finalizar programa
     if selecionar_opcao == 'sair':  
-        print("Programa finalizado")  
+        print("Programa finalizado")  #finalizar loop e programa
         break  
     elif not selecionar_opcao.isdigit():  
         print("Entrada inválida")  
-        continue  
+        continue  #erro de entrada, loop continua
 
-    selecionar_opcao = int(selecionar_opcao)  
+    selecionar_opcao = int(selecionar_opcao)  #formatar opcoes para utilizar a class menu
     menu = Menu(selecionar_opcao)  
     menu.opcoes(linhas_dados)
