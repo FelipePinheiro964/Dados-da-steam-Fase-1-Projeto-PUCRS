@@ -119,7 +119,7 @@ class Menu:
 #####################################################
 print('Boas vindas!')
 print('Trabalho de: Felipe Pinheiro Fossá') 
-print('PUCRS - Programação para dados')
+print('PUCRS - Banco de dados: ênfase em data analytics')
 print('---------------------------------------')
 print('')
 print('Siga as instruções para fazer os testes.')
